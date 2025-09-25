@@ -37,7 +37,7 @@ section {
   padding: 40px 0;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 section.visible {
@@ -285,4 +285,5 @@ p {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
