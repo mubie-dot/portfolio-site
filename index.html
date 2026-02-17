@@ -1,166 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mubarek Seid Ali | MIS & IT Officer | Data Analyst</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mubarek Seid Ali | Senior MIS & IT Officer</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Premium Glassmorphism effect */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Timeline styling for professional history */
+        .timeline-container {
+            border-left: 2px solid #1e293b;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -41px; 
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+            z-index: 10;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .project-img-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #020617;
+        }
+
+        .project-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .glass-card:hover .project-img-container img {
+            transform: scale(1.1);
+        }
+
+        /* Initial states for GSAP animations */
+        .reveal { opacity: 0; }
+        #hero-img, #hero-title, #hero-subtitle, #hero-btns { opacity: 0; }
+    </style>
 </head>
-<body>
+<body class="antialiased">
 
-  <!-- Hero Section -->
-  <header id="hero" class="fade-in">
-    <div class="container">
-      <img src="assets/images/profile.jpg" alt="Mubarek Seid Ali" class="profile-photo" />
-      <h1>Mubarek Seid Ali</h1>
-      <p>Senior MIS & IT Officer · Data Manager · Information Management Specialist · M&E Officer · Trainer</p>
-      <a href="#contact" class="btn">Contact Me</a>
-    </div>
-  </header>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-xl tracking-tight">MSA<span class="text-blue-500">.</span></span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-blue-400 transition">Home</a>
+                <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+                <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Featured Projects -->
-  <section id="projects">
-    <div class="container">
-      <h2>Featured Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <img src="assets/images/project1.png" alt="Sales Dashboard Automation" />
-          <h3>Dynamic Excel Sales Dashboard </h3>
-          <p>Automated reporting pipeline using Excel Dashboards to visualize sales and profit performance.</p>
-          <a href="https://drive.google.com/file/d/11eCtDSjaWa3FeKQUH_RAZ6U_-23rEYUj/view?usp=drive_link" target="_blank">View Project</a>
-        </article>
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl text-center">
+            <div id="hero-img" class="mb-8 relative inline-block">
+                <img src="400_400 (7).jpg" alt="Mubarek Seid Ali" class="profile-photo rounded-2xl mx-auto border-4 border-slate-800 shadow-2xl shadow-blue-500/20" onerror="this.src='https://ui-avatars.com/api/?name=Mubarek+Seid+Ali&background=3b82f6&color=fff&size=180'" />
+                <div class="absolute -bottom-2 -right-2 bg-blue-600 p-2 rounded-lg shadow-xl">
+                    <i data-lucide="check-check" class="w-5 h-5 text-white"></i>
+                </div>
+            </div>
+            <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6">
+                Mubarek <span class="gradient-text">Seid Ali</span>
+            </h1>
+            <p id="hero-subtitle" class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Senior MIS & IT Officer · Data Management Specialist · M&E Expert · Information Systems Administrator
+            </p>
+            <div id="hero-btns" class="flex flex-wrap justify-center gap-4">
+                <a href="#contact" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-600/20">Hire Me</a>
+                <a href="#experience" class="px-8 py-3 border border-slate-700 hover:bg-slate-800 rounded-full font-semibold transition-all">Work History</a>
+            </div>
+        </div>
+    </header>
 
-        <article class="card">
-          <img src="assets/images/project2.jpg" alt="Result Framework Dashboard" />
-          <h3>Dynamic PowerBi Project Result Framework Dashboard</h3>
-          <p>Five-year performance tracking for Sustainable Land Management practices.</p>
-          <a href="https://drive.google.com/file/d/1DPyg3Lt7W9BE_Qd6tgdcvBLHQ85M6Nzy/view?usp=drive_link" target="_blank">View Project</a>
-        </article>
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center reveal">
+                <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-slate-400 max-w-xl mx-auto mb-8 text-sm">Real-world data solutions ranging from automated Excel dashboards to complex Power BI result frameworks.</p>
+                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <article class="glass-card rounded-2xl p-4 reveal">
+                    <div class="project-img-container mb-6">
+                        <img src="https://drive.google.com/thumbnail?id=11eCtDSjaWa3FeKQUH_RAZ6U_-23rEYUj&sz=w800" alt="Dynamic Sales Dashboard Preview" onerror="this.src='https://images.unsplash.com/photo-1551288049-bbda38a5f452?auto=format&fit=crop&q=80&w=800'" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 bg-blue-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter">Excel Automation</div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 px-2">Dynamic Sales Dashboard</h3>
+                    <p class="text-slate-400 text-sm mb-6 px-2">End-to-end automated reporting pipeline utilizing Power Query for high-level performance visualization.</p>
+                    <a href="https://drive.google.com/file/d/11eCtDSjaWa3FeKQUH_RAZ6U_-23rEYUj/view?usp=sharing" target="_blank" class="mx-2 mb-2 p-3 bg-slate-800 rounded-xl flex items-center justify-between hover:bg-slate-700 transition group">
+                        <span class="text-sm font-medium">View Analysis</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </a>
+                </article>
 
-        <article class="card">
-          <img src="assets/images/Powebi_Sale.jpeg" alt="Interactive Power BI dashboard for Electronics Sales Performance" />
-          <h3>Dynamic Power BI dashboard for Electronics Sales Performance</h3>
-          <p>Dynamic Power BI Dashboard for Electronics Sales Performance based on Demography, Sales Count, and other metrics.</p>
-          <a href="https://drive.google.com/file/d/1M-t_S0T180ZyaXfOYt1jYoJCOYRlFtz2/view?usp=drive_link">View Project</a>
-        </article>
-      </div>
-    </div>
-  </section>
-<section id="skills" class="slide-up-delay">
-  <div class="container">
-    <h2>Core Skills</h2>
-    <ul class="skills">
-      <li><strong>Data Analysis & Visualization:</strong> Power BI, Tableau, Google Data Studio, SPSS, STATA, R</li>
-      <li><strong>Database Management:</strong> SQL (MySQL, PostgreSQL, SQL Server), REDROSE, PROGRES</li>
-      <li><strong>Programming:</strong> Python, SQL, R, JavaScript</li>
-      <li><strong>GIS & Mapping:</strong> ArcGIS, QGIS, GIS for Development</li>
-      <li><strong>Statistical Modeling & Impact Assessment</strong></li>
-      <li><strong>Cloud Platforms:</strong> AWS, Azure</li>
-      <li><strong>Monitoring & Evaluation (M&E)</strong></li>
-      <li><strong>Real-Time Dashboard Development</strong></li>
-      <li><strong>Mobile Data Collection & E-Voucher Systems</strong></li>
-      <li><strong>Teaching & Technical Training</strong></li>
-    </ul>
-  </div>
-</section>
-<!-- Work Experience Section -->
-<section id="experience">
-  <div class="container">
-    <h2>Work Experience</h2>
-    <ul class="timeline">
-      <li>
-        <span class="date">Mar 2020 – Present</span>
-        <h3>Senior MIS/IT Officer – Lowland Livelihood Resilience Project (IFAD & World Bank)</h3>
-        <p>Led MIS and MEAL system deployments, data analytics, and quality audits for multi-regional humanitarian programs.</p>
-      </li>
-      <li>
-        <span class="date">Dec 2024 – Feb 2025</span>
-        <h3>IT & Database Officer – Folkekirkens Nødhjælp (DanChurchAid)</h3>
-        <p>Managed refugee beneficiary data systems and ensured secure, scalable database operations.</p>
-      </li>
-      <li>
-        <span class="date">Oct 2018 – Jan 2018</span>
-        <h3>M&E Officer – The Global Fund</h3>
-        <p>Designed and implemented monitoring systems for health impact tracking and donor reporting.</p>
-      </li>
-      <li>
-        <span class="date">Jan 2014 – Oct 2018</span>
-        <h3>System Administrator – The Global Fund</h3>
-        <p>Oversaw IT infrastructure and supported data systems for national health programs.</p>
-      </li>
-      <li>
-        <span class="date">Jul 2015 – Mar 2019</span>
-        <h3>Data Processing Assistant – UNHCR</h3>
-        <p>Managed refugee data workflows and supported biometric registration systems.</p>
-      </li>
-      <li>
-        <span class="date">Mar 2012 – Jan 2014</span>
-        <h3>ICT Lecturer & Department Coordinator – Assosa Polytechnic College</h3>
-        <p>Led Level 1–5 ICT training programs, integrating digital pedagogy and national TVET standards.</p>
-      </li>
-    </ul>
-  </div>
-</section>
+                <!-- Project 2 -->
+                <article class="glass-card rounded-2xl p-4 reveal">
+                    <div class="project-img-container mb-6">
+                        <img src="https://drive.google.com/thumbnail?id=1DPyg3Lt7W9BE_Qd6tgdcvBLHQ85M6Nzy&sz=w800" alt="LLRP Result Framework Preview" onerror="this.src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?auto=format&fit=crop&q=80&w=800'" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 bg-purple-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter">Power BI / MEAL</div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 px-2">LLRP Result Framework</h3>
+                    <p class="text-slate-400 text-sm mb-6 px-2">A 5-year performance tracker for Sustainable Land Management practices (IFAD/World Bank).</p>
+                    <a href="https://drive.google.com/file/d/1DPyg3Lt7W9BE_Qd6tgdcvBLHQ85M6Nzy/view?usp=sharing" target="_blank" class="mx-2 mb-2 p-3 bg-slate-800 rounded-xl flex items-center justify-between hover:bg-slate-700 transition group">
+                        <span class="text-sm font-medium">Explore Framework</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </a>
+                </article>
 
-<!-- Education Section -->
-<section id="education">
-  <div class="container">
-    <h2>Education</h2>
-    <ul class="timeline">
-      <li>
-        <span class="date">2022 – 2024</span>
-        <h3>MSc in Information Technology – Assosa University</h3>
-        <p>Specialized in data systems, network operations, and digital transformation for humanitarian contexts.</p>
-      </li>
-      <li>
-        <span class="date">2007 – 2010</span>
-        <h3>BSc in Computer Science & IT – Haramaya University</h3>
-        <p>Focused on software development, database systems, and web technologies.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <h2>Get In Touch</h2>
-           <div class="social">
-        <a href="https://mubie-dot.github.io/portfolio-site/" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/mubarek-seid" target="_blank">LinkedIn</a>
-        <p>Phone: +251 915 697 274 / +251 717 039 200</p>
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-  <a href="https://wa.me/251915697274" target="_blank" style="text-decoration: none;">
-    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" style="vertical-align: middle;"/>
-    <span style="margin-left: 8px; font-weight: bold;">+251 915 697 274</span>
-  </a>
+                <!-- Project 3 -->
+                <article class="glass-card rounded-2xl p-4 reveal">
+                    <div class="project-img-container mb-6">
+                        <img src="https://drive.google.com/thumbnail?id=1M-t_S0T180ZyaXfOYt1jYoJCOYRlFtz2&sz=w800" alt="Electronics Sales Data Preview" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 bg-emerald-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter">Business Intelligence</div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 px-2">Electronics Sales Data</h3>
+                    <p class="text-slate-400 text-sm mb-6 px-2">Demographic performance metrics and forecasting models for retail distribution chains.</p>
+                    <a href="https://drive.google.com/file/d/1M-t_S0T180ZyaXfOYt1jYoJCOYRlFtz2/view?usp=sharing" target="_blank" class="mx-2 mb-2 p-3 bg-slate-800 rounded-xl flex items-center justify-between hover:bg-slate-700 transition group">
+                        <span class="text-sm font-medium">View Report</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
 
-  <a href="mailto:almube24@gmail.com" target="_blank" style="text-decoration: none;">
-    <img src="https://img.icons8.com/color/48/000000/email.png" alt="Email" style="vertical-align: middle;"/>
-    <span style="margin-left: 8px; font-weight: bold;">almube24@gmail.com</span>
-  </a>
-</div>
-      </div>
-    </div>
-  </section>
- <section id="footer">
-  <div class="container">
-    <p>© 2025 Mubarek Seid Ali</p>
-  <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=mubie-dot&label=Page%20views&color=blue&style=flat" alt="Visitor Counter" />
-</p>
-  </div>
-</section>
-  <script src="assets/js/main.js"></script>
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 reveal">Work Experience</h2>
+            
+            <div class="timeline-container ml-8 pl-8 space-y-16">
+                <!-- LLRP -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Mar 2020 – Present</span>
+                    <h3 class="text-xl font-bold text-slate-100">Senior MIS/IT Officer</h3>
+                    <p class="text-blue-400 font-medium mb-3">Lowland Livelihood Resilience Project (IFAD & World Bank)</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Overseeing multi-regional MIS operations and real-time performance tracking.</li>
+                        <li>Conducting regular data quality audits for humanitarian resilience programs.</li>
+                        <li>Automating reporting workflows to improve project decision-making speed.</li>
+                    </ul>
+                </div>
 
+                <!-- DanChurchAid -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Dec 2024 – Feb 2025</span>
+                    <h3 class="text-xl font-bold text-slate-100">IT & Database Officer</h3>
+                    <p class="text-blue-400 font-medium mb-3">Folkekirkens Nødhjælp (DanChurchAid)</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Managed secure database environments for refugee beneficiary tracking.</li>
+                        <li>Scaled data workflows to support rapid emergency response initiatives.</li>
+                        <li>Optimized local network infrastructure for field office continuity.</li>
+                    </ul>
+                </div>
+
+                <!-- UNHCR -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Jul 2018 – Mar 2020</span>
+                    <h3 class="text-xl font-bold text-slate-100">Data Processing Assistant</h3>
+                    <p class="text-blue-400 font-medium mb-3">UNHCR</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Administered biometric registration systems for large-scale refugee populations.</li>
+                        <li>Automated data processing pipelines to enhance registration efficiency.</li>
+                        <li>Maintained strict data confidentiality and protection protocols.</li>
+                    </ul>
+                </div>
+
+                <!-- Global Fund - M&E -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Jul 2015 – Jan 2018</span>
+                    <h3 class="text-xl font-bold text-slate-100">Monitoring & Evaluation (Project Officer)</h3>
+                    <p class="text-blue-400 font-medium mb-3">The Global Fund to Fight AIDS, TB & Malaria</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Developed performance dashboards and indicators for malaria and HIV programs.</li>
+                        <li>Generated monthly and quarterly reports for donor compliance.</li>
+                        <li>Conducted baseline and impact assessments using mixed methods.</li>
+                        <li>Trained health staff on digital data collection tools and protocols.</li>
+                        <li>Facilitated review meetings and after-action evaluations to promote adaptive learning.</li>
+                        <li>Coordinated across Project components to ensure effective M&E/MIS implementation.</li>
+                    </ul>
+                </div>
+
+                <!-- Global Fund - System Admin -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Jan 2014 – Jul 2015</span>
+                    <h3 class="text-xl font-bold text-slate-100">System Administrator</h3>
+                    <p class="text-blue-400 font-medium mb-3">The Global Fund to Fight AIDS, TB & Malaria</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Upgraded operating systems to protected company assets and personnel from unauthorized access.</li>
+                        <li>Coordinated with network teams, system engineers, and PC technicians to maintain high availability.</li>
+                        <li>Administered secure local infrastructure and provided hardware/software support.</li>
+                    </ul>
+                </div>
+
+                <!-- Assosa Poly-Technique -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Mar 2012 – Jan 2014</span>
+                    <h3 class="text-xl font-bold text-slate-100">Lecturer, Lab Assistant & Department Coordinator</h3>
+                    <p class="text-blue-400 font-medium mb-3">Assosa Poly-Technique College</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Developed lesson plans for Level 1-5 students in Hardware, Database, and IT Service Management.</li>
+                        <li>Managed computer labs and instructed practical lessons to reinforce theoretical concepts.</li>
+                        <li>Maintained student performance records using MS Excel and generated draft score reports.</li>
+                        <li>Built new curricula from the ground up to cover required learning materials.</li>
+                    </ul>
+                </div>
+
+                <!-- Awi Zone Education -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-blue-500 mb-2 block tracking-wide uppercase">Oct 2010 – Feb 2012</span>
+                    <h3 class="text-xl font-bold text-slate-100">ICT Teacher</h3>
+                    <p class="text-blue-400 font-medium mb-3">Awi Zone Education Department</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Planned co-teaching opportunities and provided continuous feedback to fellow educators.</li>
+                        <li>Modelled effective teaching methods for ICT-related subjects.</li>
+                        <li>Integrated rigorous data usage into student assessments to track learning outcomes.</li>
+                        <li>Assigned responsibilities to assist teachers in meeting core competencies.</li>
+                    </ul>
+                </div>
+
+                <!-- ethio telecom (Internship) -->
+                <div class="relative timeline-item reveal">
+                    <span class="text-sm font-bold text-emerald-500 mb-2 block tracking-wide uppercase">Jul 2009 – Sep 2009 (Internship)</span>
+                    <h3 class="text-xl font-bold text-slate-100">IT Support Technician</h3>
+                    <p class="text-blue-400 font-medium mb-3">ethio telecom</p>
+                    <ul class="text-slate-400 text-sm space-y-2 list-disc ml-4">
+                        <li>Assisted in local area network (LAN) maintenance and troubleshooting.</li>
+                        <li>Provided first-level hardware and software support for regional office workstations.</li>
+                        <li>Participated in network administration tasks and infrastructure monitoring.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Summary -->
+    <section id="skills" class="py-24 px-6 bg-slate-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 reveal text-center">
+                <h2 class="text-3xl font-bold mb-4">Technical Proficiency</h2>
+                <p class="text-slate-400">Broad expertise across Data Science, IT Infrastructure, and Project Management.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="reveal p-6 glass-card rounded-xl">
+                    <i data-lucide="database" class="w-8 h-8 text-blue-500 mb-4"></i>
+                    <h4 class="font-bold mb-2">Data Systems</h4>
+                    <p class="text-xs text-slate-500">SQL Server, MySQL, Power BI, Tableau, SPSS, STATA, REDROSE</p>
+                </div>
+                <div class="reveal p-6 glass-card rounded-xl">
+                    <i data-lucide="code" class="w-8 h-8 text-purple-500 mb-4"></i>
+                    <h4 class="font-bold mb-2">Development</h4>
+                    <p class="text-xs text-slate-500">Python, JavaScript, R, Web App Architecture, API Integration</p>
+                </div>
+                <div class="reveal p-6 glass-card rounded-xl">
+                    <i data-lucide="map-pin" class="w-8 h-8 text-emerald-500 mb-4"></i>
+                    <h4 class="font-bold mb-2">GIS & Field</h4>
+                    <p class="text-xs text-slate-500">ArcGIS Products, QGIS, Mobile Data Collection (ODK/Kobo)</p>
+                </div>
+                <div class="reveal p-6 glass-card rounded-xl">
+                    <i data-lucide="server" class="w-8 h-8 text-orange-500 mb-4"></i>
+                    <h4 class="font-bold mb-2">IT Operations</h4>
+                    <p class="text-xs text-slate-500">Network Admin, Cyber Security, Cloud (AWS/Azure), Hardware Mgt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8 reveal">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <a href="mailto:almube24@gmail.com" class="reveal flex items-center justify-center gap-4 p-8 glass-card rounded-3xl group border-2 border-transparent hover:border-blue-500/50">
+                    <i data-lucide="mail" class="text-blue-500 w-8 h-8"></i>
+                    <div class="text-left">
+                        <p class="text-xs text-slate-500">Email Me</p>
+                        <p class="font-bold">almube24@gmail.com</p>
+                    </div>
+                </a>
+                <a href="https://wa.me/251915697274" target="_blank" class="reveal flex items-center justify-center gap-4 p-8 glass-card rounded-3xl group border-2 border-transparent hover:border-emerald-500/50">
+                    <i data-lucide="message-circle" class="text-emerald-500 w-8 h-8"></i>
+                    <div class="text-left">
+                        <p class="text-xs text-slate-500">WhatsApp</p>
+                        <p class="font-bold">+251 915 697 274</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>© 2025 Mubarek Seid Ali. Professional Portfolio.</p>
+    </footer>
+
+    <!-- Logic & Animations -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.onload = () => {
+            // Hero Section Animation Timeline
+            const heroTl = gsap.timeline();
+            heroTl.to("#hero-img", { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" })
+                  .to("#hero-title", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+                  .to("#hero-subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6")
+                  .to("#hero-btns", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6");
+
+            // Scroll reveal animation for all sections
+            document.querySelectorAll(".reveal").forEach((el) => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 30 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 90%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+        };
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
